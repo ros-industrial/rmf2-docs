@@ -9,7 +9,8 @@
     "format:fail": "prettier --check",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -22,10 +23,15 @@
     "cytoscape-cose-bilkent": "^4.1.0",
     "dayjs": "^1.11.21",
     "debug": "^4.4.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
     "mermaid": "^11.15.0",
     "prettier": "^3.8.4",
     "vitepress": "2.0.0-alpha.17",
     "vitepress-plugin-group-icons": "^1.7.5",
     "vitepress-plugin-mermaid": "^2.0.17"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
