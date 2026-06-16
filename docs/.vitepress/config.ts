@@ -6,6 +6,10 @@ import { groupIconMdPlugin, groupIconVitePlugin } from 'vitepress-plugin-group-i
 export default withMermaid(defineConfig({
   title: "RMF-Industrial",
   description: "RMF2 Documentation",
+  // localhost URLs in module docs are runtime endpoints, not site links
+  ignoreDeadLinks: [
+    /^https?:\/\/localhost/,
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     siteTitle: "RMF Industrial",
@@ -42,6 +46,8 @@ export default withMermaid(defineConfig({
             { text: 'VDA5050 — Master & Client', link: '/guide/vda5050' },
             { text: 'MAPF (unified)', link: '/guide/mapf' },
             { text: 'Task & Task Orchestrator', link: '/guide/task-orchestrator' },
+            { text: 'Scheduler', link: '/guide/scheduler' },
+            { text: 'UI', link: '/guide/ui' },
           ]
         },
       {
