@@ -1,7 +1,7 @@
 # Architecture
 
-The demo is built from **four core modules**. Tasks flow *down* into robot motion, and
-robot state flows *back up* to keep everyone in sync.
+The demo is built from **four core modules**. Tasks flow _down_ into robot motion, and
+robot state flows _back up_ to keep everyone in sync.
 
 ```mermaid
 flowchart LR
@@ -16,12 +16,12 @@ flowchart LR
 
 ## The four modules
 
-| Module | Role | Deep dive |
-| --- | --- | --- |
-| **Task Orchestrator** | Decides *what* to do — runs the workflow for each task and requests routes. | [Task Orchestrator →](/guide/task-orchestrator) |
-| **MAPF** | Decides *where to go* — plans collision-free paths and drives execution. | [MAPF →](/guide/mapf) |
-| **VDA5050** | Talks to the robots — relays commands and reports state back. | [VDA5050 →](/guide/vda5050) |
-| **Simulation** | Plays the robot fleet so the whole stack runs without hardware. | [Simulation →](/guide/simulation) |
+| Module                | Role                                                                        | Deep dive                                       |
+| --------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
+| **Task Orchestrator** | Decides _what_ to do — runs the workflow for each task and requests routes. | [Task Orchestrator →](/guide/task-orchestrator) |
+| **MAPF**              | Decides _where to go_ — plans collision-free paths and drives execution.    | [MAPF →](/guide/mapf)                           |
+| **VDA5050**           | Talks to the robots — relays commands and reports state back.               | [VDA5050 →](/guide/vda5050)                     |
+| **Simulation**        | Plays the robot fleet so the whole stack runs without hardware.             | [Simulation →](/guide/simulation)               |
 
 ## End-to-end flow
 
@@ -46,4 +46,4 @@ ros_industrial_ws/
 └── simulation/               # UE5 packaged binary
 ```
 
-To bring everything up, see [Getting Started](/guide/getting-started) 
+To bring everything up, see [Getting Started](/guide/getting-started)

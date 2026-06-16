@@ -15,20 +15,20 @@ them properly.
 
 Every diagram has three top-level keys:
 
-| Key | What it is |
-| --- | --- |
-| `version` | Diagram schema version (currently `"0.1.0"`). |
-| `start` | The `id` of the first op to run. |
-| `ops` | A map of `id → operation`. The graph is wired by each op's `next`. |
+| Key       | What it is                                                         |
+| --------- | ------------------------------------------------------------------ |
+| `version` | Diagram schema version (currently `"0.1.0"`).                      |
+| `start`   | The `id` of the first op to run.                                   |
+| `ops`     | A map of `id → operation`. The graph is wired by each op's `next`. |
 
 An **operation** has a `type`. The common ones:
 
-| `type` | Purpose |
-| --- | --- |
-| `node` | Does the work. Pick a `builder` (e.g. `MAPFGoToNode`, `MQTTTaskRequestNode`) and a `config`. |
-| `fork_clone` | Splits flow into parallel branches — `next` is a **list** of op ids. |
-| `buffer` | A wait point that holds a branch's result until a `join` collects it. |
-| `join` | Waits for all listed `buffers`, then continues. |
+| `type`       | Purpose                                                                                      |
+| ------------ | -------------------------------------------------------------------------------------------- |
+| `node`       | Does the work. Pick a `builder` (e.g. `MAPFGoToNode`, `MQTTTaskRequestNode`) and a `config`. |
+| `fork_clone` | Splits flow into parallel branches — `next` is a **list** of op ids.                         |
+| `buffer`     | A wait point that holds a branch's result until a `join` collects it.                        |
+| `join`       | Waits for all listed `buffers`, then continues.                                              |
 
 `next` points to the id of the op to run next, or `{ "builtin": "terminate" }` to end a
 branch.

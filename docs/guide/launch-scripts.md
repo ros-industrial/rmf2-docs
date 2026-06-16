@@ -17,17 +17,17 @@ is sent to its own pane and gated on a health probe before the next step runs.
 
 ### Step table
 
-| # | Step | tmux pane | Health gate |
-| --- | --- | --- | --- |
-| 1 | Dashboard (`rmf2-launcher`) | `Dashboard.0` | port `8083` |
-| 2 | Broker (IOCS) | `IOCS.0` | `http://localhost:8000/status` |
-| 3 | MQTT | `IOCS.1` | sleep 3s |
-| 4 | MAPF (unified) | `Services.0` | port `8888` |
-| 5 | Task Orchestrator | `Services.1` | `http://localhost:2727/health_check` |
-| 6 | Devices (VDA5050) | `Devices.0` | log match `vda5050_fiware: state` |
-| 7 | Simulation | `Sim.0` | sleep 10s |
-| 8 | Init System | `InitSystem.0` | sleep 5s |
-| 9 | Send Task | `SendTask.0` | sleep 3s |
+| #   | Step                        | tmux pane      | Health gate                          |
+| --- | --------------------------- | -------------- | ------------------------------------ |
+| 1   | Dashboard (`rmf2-launcher`) | `Dashboard.0`  | port `8083`                          |
+| 2   | Broker (IOCS)               | `IOCS.0`       | `http://localhost:8000/status`       |
+| 3   | MQTT                        | `IOCS.1`       | sleep 3s                             |
+| 4   | MAPF (unified)              | `Services.0`   | port `8888`                          |
+| 5   | Task Orchestrator           | `Services.1`   | `http://localhost:2727/health_check` |
+| 6   | Devices (VDA5050)           | `Devices.0`    | log match `vda5050_fiware: state`    |
+| 7   | Simulation                  | `Sim.0`        | sleep 10s                            |
+| 8   | Init System                 | `InitSystem.0` | sleep 5s                             |
+| 9   | Send Task                   | `SendTask.0`   | sleep 3s                             |
 
 The step table is the single source of truth. To add or edit a step, see the
 `launch/how_to_add_step.md` guide in the repo.
@@ -39,6 +39,7 @@ session running. Attach and inspect:
 ```bash
 tmux attach -t ihi_demo      # then switch to the failing window
 ```
+
 :::
 
 ## `stop_environment_tmux.sh`
@@ -60,11 +61,11 @@ Steps 8 (Init) and 9 (Send Task) are one-shot, so teardown covers steps 7 → 1.
 
 The launcher calls per-service control scripts (each takes `start` / `stop`):
 
-| Script | Service |
-| --- | --- |
+| Script                         | Service                |
+| ------------------------------ | ---------------------- |
 | `rmf2_unified_mapf_control.sh` | MAPF unified container |
-| `task_orchestrator_control.sh` | Task Orchestrator |
-| `rmf2_res_vda5050_control.sh` | VDA5050 bridge |
-| `simulation/Linux/RMF2_SIM.sh` | UE5 simulation binary |
-| `rmf2_res_mqtt_control.sh` | Mosquitto MQTT |
-| `rmf2_res_broker_control.sh` | IOCS broker stack |
+| `task_orchestrator_control.sh` | Task Orchestrator      |
+| `rmf2_res_vda5050_control.sh`  | VDA5050 bridge         |
+| `simulation/Linux/RMF2_SIM.sh` | UE5 simulation binary  |
+| `rmf2_res_mqtt_control.sh`     | Mosquitto MQTT         |
+| `rmf2_res_broker_control.sh`   | IOCS broker stack      |

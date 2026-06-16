@@ -18,22 +18,22 @@ services in the right order, and reporting status back. It's the layer between
 
 ## Internal crates
 
-| Crate | Purpose |
-| --- | --- |
+| Crate                    | Purpose                                  |
+| ------------------------ | ---------------------------------------- |
 | `rmf2_task_orchestrator` | Main binary — HTTP server on port `2727` |
-| `workflow_executor` | Crossflow-based workflow engine |
-| `amqp` | AMQP client for RabbitMQ communication |
+| `workflow_executor`      | Crossflow-based workflow engine          |
+| `amqp`                   | AMQP client for RabbitMQ communication   |
 
 ## Tasks
 
 A few related concepts show up across the system — worth pinning down:
 
-| Term | What it is |
-| --- | --- |
-| **TaskRequest** | A single requested action on an asset (e.g. `liftrack`, `depalletize`). See the [Simulation TaskRequest format](/guide/simulation#message-format). |
-| **Schedule** | A wrapper carrying a **workflow diagram** (`{ id, type: "Schedule", payload: <diagram> }`) published to the AMQP `@RECEIVE@` exchange. |
-| **Workflow diagram** | A Crossflow graph of operations (fork / nodes / join). Samples in `workflow_executor/diagrams/`. |
-| **TaskStatus** | Progress/completion messages emitted as the workflow runs. |
+| Term                 | What it is                                                                                                                                         |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **TaskRequest**      | A single requested action on an asset (e.g. `liftrack`, `depalletize`). See the [Simulation TaskRequest format](/guide/simulation#message-format). |
+| **Schedule**         | A wrapper carrying a **workflow diagram** (`{ id, type: "Schedule", payload: <diagram> }`) published to the AMQP `@RECEIVE@` exchange.             |
+| **Workflow diagram** | A Crossflow graph of operations (fork / nodes / join). Samples in `workflow_executor/diagrams/`.                                                   |
+| **TaskStatus**       | Progress/completion messages emitted as the workflow runs.                                                                                         |
 
 In short: a **Schedule** carries a **workflow diagram** that the orchestrator executes,
 which in turn issues **TaskRequests** to robots/services and reports **TaskStatus** back.
@@ -49,12 +49,12 @@ which in turn issues **TaskRequests** to robots/services and reports **TaskStatu
 
 ## HTTP API
 
-| Endpoint | Method | Description |
-| --- | --- | --- |
-| `/` | GET | Crossflow diagram editor UI |
-| `/health_check` | GET | Health check (used by the launcher's gate) |
-| `/api/executor/run` | POST | Execute a workflow diagram (Crossflow's built-in executor) |
-| `/workflow/get_workflows` | GET | List the `task_id`s of workflows currently executing |
+| Endpoint                  | Method | Description                                                |
+| ------------------------- | ------ | ---------------------------------------------------------- |
+| `/`                       | GET    | Crossflow diagram editor UI                                |
+| `/health_check`           | GET    | Health check (used by the launcher's gate)                 |
+| `/api/executor/run`       | POST   | Execute a workflow diagram (Crossflow's built-in executor) |
+| `/workflow/get_workflows` | GET    | List the `task_id`s of workflows currently executing       |
 
 ## AMQP integration
 
@@ -98,10 +98,10 @@ python3 send_workflow.py --host <amqp-host> --port 5672
 
 The 25 AMRs are split across the two workflows, which the orchestrator executes concurrently:
 
-| Diagram | Schedule id | Robots | Count |
-| --- | --- | --- | --- |
-| `rack_workflow_1.json` | `urn:ngsild:Task:rack_wf1` | `Manufacturer_1` – `Manufacturer_12` | 12 |
-| `rack_workflow_2.json` | `urn:ngsild:Task:rack_wf2` | `Manufacturer_13` – `Manufacturer_25` | 13 |
+| Diagram                | Schedule id                | Robots                                | Count |
+| ---------------------- | -------------------------- | ------------------------------------- | ----- |
+| `rack_workflow_1.json` | `urn:ngsild:Task:rack_wf1` | `Manufacturer_1` – `Manufacturer_12`  | 12    |
+| `rack_workflow_2.json` | `urn:ngsild:Task:rack_wf2` | `Manufacturer_13` – `Manufacturer_25` | 13    |
 
 Each diagram is a `fork_clone` into one sequential branch per robot — drive to a rack
 (`MAPFGoToNode`), then `liftrack` → move to a manipulator → `depalletize` → `droprack`
@@ -145,6 +145,7 @@ single robot to a waypoint via the `MAPFGoToNode` (the AMQP/MAPF node), then ter
 ```
 
 Notes:
+
 - `builder` must be a node the orchestrator registers — see [Workflow nodes](#workflow-nodes)
   below for the full list and each node's config params.
 - `coordinates` must be a real waypoint in the map graph (e.g. `P300`) — an unknown goal makes
@@ -199,16 +200,16 @@ Publishes a `TaskRequest` to AMQP and blocks until the matching `TaskStatus` ret
 task id is formatted as `urn:ngsi-ld:Task:{task_id}`, and the emitted request's `taskType` is
 always `amr_mapf` (the `task_type` config below is only a label).
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| `asset_name` | string | `""` | Robot id, e.g. `Manufacturer_2` |
-| `coordinates` | string | `""` | Goal waypoint — **must exist in the map graph** (e.g. `P300`) |
-| `task_type` | string | `""` | Label only; the published `taskType` is hardcoded to `amr_mapf` |
-| `task_id` | string | `""` | Unique per node; wrapped as `urn:ngsi-ld:Task:{task_id}` |
-| `publish_exchange` | string | `@RECEIVE@` | Exchange the `TaskRequest` is published to |
-| `publish_routing_key` | string | `""` | Routing key (ignored by the fanout exchange) |
-| `response_exchange` | string | `@RECEIVE@` | Exchange the response listener binds to |
-| `response_queue_prefix` | string | `@RECEIVE@-task-` | Queue-name prefix for the response listener |
+| Param                   | Type   | Default           | Description                                                     |
+| ----------------------- | ------ | ----------------- | --------------------------------------------------------------- |
+| `asset_name`            | string | `""`              | Robot id, e.g. `Manufacturer_2`                                 |
+| `coordinates`           | string | `""`              | Goal waypoint — **must exist in the map graph** (e.g. `P300`)   |
+| `task_type`             | string | `""`              | Label only; the published `taskType` is hardcoded to `amr_mapf` |
+| `task_id`               | string | `""`              | Unique per node; wrapped as `urn:ngsi-ld:Task:{task_id}`        |
+| `publish_exchange`      | string | `@RECEIVE@`       | Exchange the `TaskRequest` is published to                      |
+| `publish_routing_key`   | string | `""`              | Routing key (ignored by the fanout exchange)                    |
+| `response_exchange`     | string | `@RECEIVE@`       | Exchange the response listener binds to                         |
+| `response_queue_prefix` | string | `@RECEIVE@-task-` | Queue-name prefix for the response listener                     |
 
 ### `MQTTTaskRequestNode` — devices/handover task (MQTT)/manipulation
 
@@ -217,36 +218,36 @@ Used for `liftrack` / `depalletize` / `droprack` / `dropoff`. Publishes a `TaskR
 terminal status: `COMPLETED` → node done, `FAILED` → node fails, `REJECTED` → re-publish (up to
 `max_retries`). The outgoing request id is `{id}:TaskRequest`.
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| `id` | string | `""` | Base task id, e.g. `urn:ngsild:Task:task_Depalletize001` |
-| `task_type` | string | `""` | `liftrack` / `depalletize` / `droprack` |
-| `task_command` | string | `START` | `taskCommand` field on the request |
-| `asset_id` | string | `""` | Target asset — sets the MQTT topic `asset/{asset_id}/task_request` |
-| `task_params` | object | `{}` | Arbitrary params forwarded in the request |
-| `task_expected_start` | string | `""` | Passed through to the request |
-| `task_expected_end` | string | `""` | Passed through to the request |
-| `max_retries` | int | `3` | Re-publish attempts on `REJECTED` |
+| Param                 | Type   | Default | Description                                                        |
+| --------------------- | ------ | ------- | ------------------------------------------------------------------ |
+| `id`                  | string | `""`    | Base task id, e.g. `urn:ngsild:Task:task_Depalletize001`           |
+| `task_type`           | string | `""`    | `liftrack` / `depalletize` / `droprack`                            |
+| `task_command`        | string | `START` | `taskCommand` field on the request                                 |
+| `asset_id`            | string | `""`    | Target asset — sets the MQTT topic `asset/{asset_id}/task_request` |
+| `task_params`         | object | `{}`    | Arbitrary params forwarded in the request                          |
+| `task_expected_start` | string | `""`    | Passed through to the request                                      |
+| `task_expected_end`   | string | `""`    | Passed through to the request                                      |
+| `max_retries`         | int    | `3`     | Re-publish attempts on `REJECTED`                                  |
 
 ### `WaitAMRTaskNode` — timed wait (AMQP)
 
 Sleeps for `wait_duration_secs`, then publishes a `TaskStatus: COMPLETED` (id
 `{task_id}:TaskStatus`) to `@RECEIVE@`. Handy for awaiting/simulating an AMR step without a robot.
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| `asset_name` | string | `""` | Robot id (logging) |
-| `task_id` | string | `""` | Used to build the emitted `TaskStatus` id |
-| `task_type` | string | `""` | `taskType` on the emitted status |
-| `wait_duration_secs` | int | `14` | Seconds to wait before completing |
+| Param                | Type   | Default | Description                               |
+| -------------------- | ------ | ------- | ----------------------------------------- |
+| `asset_name`         | string | `""`    | Robot id (logging)                        |
+| `task_id`            | string | `""`    | Used to build the emitted `TaskStatus` id |
+| `task_type`          | string | `""`    | `taskType` on the emitted status          |
+| `wait_duration_secs` | int    | `14`    | Seconds to wait before completing         |
 
 ### `DefaultNode` — pass-through (AMQP)
 
 Logs and forwards the workflow context unchanged. Useful as a placeholder.
 
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| `task_id` | string | `""` | Identifier used in logs |
+| Param     | Type   | Default | Description             |
+| --------- | ------ | ------- | ----------------------- |
+| `task_id` | string | `""`    | Identifier used in logs |
 
 ## Run
 
@@ -272,15 +273,15 @@ docker run -d \
 
 Environment variables (override `config.toml`):
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `RUST_LOG` | `info` | Log level (`debug`/`info`/`warn`/`error`) |
-| `TASK_ORCHESTRATOR__HTTP__HOST` | `0.0.0.0` | HTTP bind address |
-| `TASK_ORCHESTRATOR__HTTP__PORT` | `2727` | HTTP port |
-| `TASK_ORCHESTRATOR__AMQP__HOST` | `localhost` | RabbitMQ host |
-| `TASK_ORCHESTRATOR__AMQP__PORT` | `5672` | RabbitMQ port |
-| `TASK_ORCHESTRATOR__MQTT__HOST` | `localhost` | MQTT host |
-| `TASK_ORCHESTRATOR__MQTT__PORT` | `1883` | MQTT port |
+| Variable                        | Default     | Description                               |
+| ------------------------------- | ----------- | ----------------------------------------- |
+| `RUST_LOG`                      | `info`      | Log level (`debug`/`info`/`warn`/`error`) |
+| `TASK_ORCHESTRATOR__HTTP__HOST` | `0.0.0.0`   | HTTP bind address                         |
+| `TASK_ORCHESTRATOR__HTTP__PORT` | `2727`      | HTTP port                                 |
+| `TASK_ORCHESTRATOR__AMQP__HOST` | `localhost` | RabbitMQ host                             |
+| `TASK_ORCHESTRATOR__AMQP__PORT` | `5672`      | RabbitMQ port                             |
+| `TASK_ORCHESTRATOR__MQTT__HOST` | `localhost` | MQTT host                                 |
+| `TASK_ORCHESTRATOR__MQTT__PORT` | `1883`      | MQTT port                                 |
 
 ## Limitations
 
@@ -295,7 +296,7 @@ Known constraints in this version:
   sharing an id collide. A response can be delivered to the wrong waiter and duplicate
   `Schedule` ids clash in `get_workflows`. Give every node and schedule a distinct id.
   - **Workaround:** omit `task_id` from a node's `config` entirely rather than reusing one.
-  
+
 ## Local development
 
 ```bash

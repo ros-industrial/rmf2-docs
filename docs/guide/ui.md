@@ -4,7 +4,7 @@
 
 ::: warning Not part of the demo
 The UI is **not** included in the
-`ros_industrial_demo` stack. 
+`ros_industrial_demo` stack.
 
 It will be added in a future release.
 :::

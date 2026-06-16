@@ -6,7 +6,7 @@
 // 3. Remove multiple consecutive hyphens or leading/trailing hyphens
 
 const VERSION_MAP = {
-  main: "latest"
+  main: 'latest',
 }
 
 function slugify(inputStr) {
@@ -14,7 +14,7 @@ function slugify(inputStr) {
     .replace(/^refs\/(heads|tags|pull)\//, '')
     .toLowerCase()
     .replace(/[^a-z0-9.]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/^-+|-+$/g, '')
 }
 
 function toVersion(slug) {
@@ -25,16 +25,16 @@ function toVersion(slug) {
   return slug
 }
 
-const args = process.argv.slice(2);
-const inputRef = args[0];
+const args = process.argv.slice(2)
+const inputRef = args[0]
 
 if (!inputRef) {
-  console.error('Error: Please provide a GitHub ref as an argument.');
-  console.log('Usage: node generate-version-metadata.js <github-ref>');
-  process.exit(1);
+  console.error('Error: Please provide a GitHub ref as an argument.')
+  console.log('Usage: node generate-version-metadata.js <github-ref>')
+  process.exit(1)
 }
 
 const slug = slugify(inputRef)
 const version = toVersion(slug)
 
-console.log(version);
+console.log(version)

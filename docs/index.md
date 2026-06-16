@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "RMF Industrial"
-  text: "Documentation"
+  name: 'RMF Industrial'
+  text: 'Documentation'
   tagline: Fleet Management for Manufacturing and Logistics
   actions:
     - theme: brand
@@ -18,7 +18,6 @@ hero:
       link: https://github.com/ros-industrial/rmf_industrial
 
 features:
-
   - icon:
       src: /icons/FcCamcorderPro.svg
     title: Simulation & Digital Twin

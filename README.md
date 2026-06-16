@@ -61,4 +61,4 @@ docs/
   top-level) in `docs/.vitepress/config.mts`.
 - **Internal links** use root-absolute paths without the `.md` extension, e.g.
   `[MAPF](docs/modules/mapf)`.
-- **Callouts:** ` ::: tip ` / ` ::: warning ` / ` ::: danger ` blocks are supported.
+- **Callouts:** `::: tip` / `::: warning` / `::: danger` blocks are supported.

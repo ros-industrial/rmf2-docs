@@ -1,6 +1,6 @@
 # Demos
 
-Four hands-on demos, one per module. 
+Four hands-on demos, one per module.
 
 Every command lives under
 `~/ros_industrial_ws/ros_industrial_demo/test_scripts`.
@@ -14,11 +14,13 @@ across robots.
 cd ~/ros_industrial_ws/ros_industrial_demo/test_scripts/taskorchestrator
 python3 send_workflow.py
 ```
+
 ![Task Orchestrator coordinating multi-robot execution in the warehouse simulation](/demo/task-orchestrator-overview.gif)
 
 → More info: [Task Orchestrator](/guide/task-orchestrator) · [Create a workflow](/guide/create-workflow)
 
 ## 2. Send a MAPF request to MAPF
+
 ```bash
 cd ~/ros_industrial_ws/ros_industrial_demo/test_scripts/mapf
 ./loop_tasks.sh 24 1

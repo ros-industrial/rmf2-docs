@@ -20,6 +20,7 @@ flowchart LR
   sim -- "task_status / asset_status" --> broker
   broker --> you
 ```
+
 ![Simulation](/demo/simulation-step-01.gif)
 
 The simulation starts in fullscreen mode by default.
@@ -27,7 +28,6 @@ The simulation starts in fullscreen mode by default.
 - Move: `W A S D`
 - Toggle fullscreen: `Alt + Enter`
 - Map marker: `M`
-
 
 ## Control an AGV (VDA5050) via Mqtt
 
@@ -68,11 +68,11 @@ uagv/v2/Manufacturer/<serial>/order
 
 The AGV reports back on these topics:
 
-| Topic | Direction | Purpose |
-| --- | --- | --- |
-| `uagv/v2/Manufacturer/<serial>/order` | → sim | Drive the AGV to a node |
-| `uagv/v2/Manufacturer/<serial>/state` | sim → | Pose, `lastNodeId`, `driving`, battery, … |
-| `uagv/v2/Manufacturer/<serial>/connection` | sim → | Online / offline |
+| Topic                                      | Direction | Purpose                                   |
+| ------------------------------------------ | --------- | ----------------------------------------- |
+| `uagv/v2/Manufacturer/<serial>/order`      | → sim     | Drive the AGV to a node                   |
+| `uagv/v2/Manufacturer/<serial>/state`      | sim →     | Pose, `lastNodeId`, `driving`, battery, … |
+| `uagv/v2/Manufacturer/<serial>/connection` | sim →     | Online / offline                          |
 
 The AGV has **arrived** when its `/state` reports `lastNodeId == <your nodeId>` and
 `driving == false`:
@@ -116,19 +116,19 @@ Only **`task_type`**, **`task_command`** and the target **`asset_id`** drive beh
 
 The `task_type` you send and the `asset_id` you address it to go together:
 
-| `task_type` | Addressed to (`asset_id`) | Action |
-| --- | --- | --- |
-| `liftrack` / `droprack` | the **AGV serial** (e.g. `1`, `10`) | AGV lifts / drops the rack at its current spot |
-| `depalletize` | a manipulator — `ManipulatorRobot1`, `ManipulatorRobot2` | Robot arm performs a pickup |
-| `dropoff` | a conveyor — `Conveyor1` … `Conveyor3` | Conveyor accepts the dropoff |
+| `task_type`             | Addressed to (`asset_id`)                                | Action                                         |
+| ----------------------- | -------------------------------------------------------- | ---------------------------------------------- |
+| `liftrack` / `droprack` | the **AGV serial** (e.g. `1`, `10`)                      | AGV lifts / drops the rack at its current spot |
+| `depalletize`           | a manipulator — `ManipulatorRobot1`, `ManipulatorRobot2` | Robot arm performs a pickup                    |
+| `dropoff`               | a conveyor — `Conveyor1` … `Conveyor3`                   | Conveyor accepts the dropoff                   |
 
 The device reports back on these topics:
 
-| Topic | Direction | Purpose |
-| --- | --- | --- |
-| `asset/<asset_id>/task_request` | → sim | Trigger an asset action |
-| `asset/<asset_id>/task_status` | sim → | Task lifecycle: `STARTED` / `RUNNING` / `COMPLETED` / `FAILED` / `REJECTED` |
-| `asset/<asset_id>/asset_status` | sim → | Per-asset heartbeat |
+| Topic                           | Direction | Purpose                                                                     |
+| ------------------------------- | --------- | --------------------------------------------------------------------------- |
+| `asset/<asset_id>/task_request` | → sim     | Trigger an asset action                                                     |
+| `asset/<asset_id>/task_status`  | sim →     | Task lifecycle: `STARTED` / `RUNNING` / `COMPLETED` / `FAILED` / `REJECTED` |
+| `asset/<asset_id>/asset_status` | sim →     | Per-asset heartbeat                                                         |
 
 The action is **done** when `task_status` reports `COMPLETED`:
 
@@ -166,7 +166,7 @@ cycle. Each step below is one MQTT publish (and the wait for its completion).
 
 ### Run it
 
-**Prerequisites:** the UE5 sim must be running (the demo only *publishes* to it), and you
+**Prerequisites:** the UE5 sim must be running (the demo only _publishes_ to it), and you
 need the `paho-mqtt` Python package.
 
 ```bash
@@ -218,8 +218,6 @@ publishes and waits for completion.
 **8. Drop the rack** — `send_device 10 droprack`
 
 ![Drop rack](/demo/simulation-step-04.gif)
-
-
 
 ## Drive it with the test scripts
 

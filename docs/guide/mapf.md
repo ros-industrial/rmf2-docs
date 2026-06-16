@@ -13,7 +13,7 @@ paths for the whole fleet at once** (ECBS solver), compiles them into an
 action-dependency graph the executor can drive, and exposes the map and live robot
 positions through Scorpio so planning always uses current state.
 
-> In one line: *many robots, one floor, no collisions — and keep them moving.*
+> In one line: _many robots, one floor, no collisions — and keep them moving._
 
 ## How it works
 
@@ -22,7 +22,7 @@ explain the behavior of the services described below.
 
 ### The mental model
 
-The system deliberately separates *planning* from *execution* and applies a
+The system deliberately separates _planning_ from _execution_ and applies a
 different assumption about time to each.
 
 1. **Planning assumes a synchronized clock.** The `mapf_solver` plans for the entire
@@ -39,7 +39,7 @@ different assumption about time to each.
    preserves the solver's collision-freedom regardless of how fast or slowly
    individual robots move.
 
-In short, the fleet is *planned* as though perfectly synchronized, yet *executed* as
+In short, the fleet is _planned_ as though perfectly synchronized, yet _executed_ as
 a set of dependencies that remain safe under real-world timing.
 
 The diagram below traces one concrete crossing through both phases: robot 1 passes
@@ -82,7 +82,7 @@ A movement request progresses through the services in a single direction.
    steps. It links each robot's own moves in sequence and adds a cross-robot
    dependency wherever one robot must vacate a node before another is permitted to
    enter it.
-4. **Execute.** The executor dispatches each action that is *ready* as a VDA5050
+4. **Execute.** The executor dispatches each action that is _ready_ as a VDA5050
    order. An action becomes ready once the actions it depends on across other robots
    have completed; to avoid unnecessary stalls, each robot may have up to three of
    its own upcoming moves queued in advance. As robots report their progress,
@@ -100,14 +100,14 @@ other services can query the current map.
 
 ## Services inside the container
 
-| Service | Port(s) | Purpose |
-| --- | --- | --- |
-| `fiware_map_server` | `7073` (HTTP/Flask) | Uploads maps to the context broker |
-| `load_maps` | — (one-shot) | Loads YAML maps at startup |
-| `mapf_solver` | `8888` (HTTP) | MAPF path-planning solver (ECBS) |
-| `adg_executor` | `6333` (HTTP), `1932` (MQTT) | ADG execution engine |
-| `mapf_mrs` | `1933` (MQTT) | Movement request server |
-| `movement_request_server` | `8009` (HTTP/FastAPI) | REST API for movement requests |
+| Service                   | Port(s)                      | Purpose                            |
+| ------------------------- | ---------------------------- | ---------------------------------- |
+| `fiware_map_server`       | `7073` (HTTP/Flask)          | Uploads maps to the context broker |
+| `load_maps`               | — (one-shot)                 | Loads YAML maps at startup         |
+| `mapf_solver`             | `8888` (HTTP)                | MAPF path-planning solver (ECBS)   |
+| `adg_executor`            | `6333` (HTTP), `1932` (MQTT) | ADG execution engine               |
+| `mapf_mrs`                | `1933` (MQTT)                | Movement request server            |
+| `movement_request_server` | `8009` (HTTP/FastAPI)        | REST API for movement requests     |
 
 ```
 ┌─────────────────────────────────────────────────────────┐
@@ -135,31 +135,31 @@ via the context broker.
 
 ## MAPF Simulation and Testing
 
-The quickest way to *see* MAPF working — no full stack required — is to send one
+The quickest way to _see_ MAPF working — no full stack required — is to send one
 problem straight to the solver and render the collision-free plan as a GIF. See the
 **MAPF Solver Test + Visualization** guide in the `ros_industrial_demo` repository,
 under `test_scripts/mapf/README.md`.
 
-
 ### Demo
+
 ![Three random agents solved by the MAPF solver and rendered as a collision-free plan](/demo/mapf-solver-test.gif)
 
 ![Demo_Mapf](/demo/mapf-step-01.gif)
+
 ```bash
 cd ~/ros_industrial_ws/ros_industrial_demo/test_scripts/mapf
 ./loop_tasks.sh 24 1
 ```
 
-
 ## Key environment variables
 
-| Variable | Default | Description |
-| --- | --- | --- |
-| `MQTT_SERVER_HOST` | `mosquitto` | MQTT broker hostname |
-| `REDIS_HOST` | `redis` | Redis hostname |
-| `CONTEXT_BROKER_HOST` | `scorpio` | context broker |
-| `AMQP_HOST` | `rmf2_broker-rabbitmq-1` | RabbitMQ hostname |
-| `BUILDING_NAME` | `warehouse_os_setup_v2` | Map / building name |
-| `MAP_SERVER_PORT` | `7073` | map server port |
+| Variable              | Default                  | Description          |
+| --------------------- | ------------------------ | -------------------- |
+| `MQTT_SERVER_HOST`    | `mosquitto`              | MQTT broker hostname |
+| `REDIS_HOST`          | `redis`                  | Redis hostname       |
+| `CONTEXT_BROKER_HOST` | `scorpio`                | context broker       |
+| `AMQP_HOST`           | `rmf2_broker-rabbitmq-1` | RabbitMQ hostname    |
+| `BUILDING_NAME`       | `warehouse_os_setup_v2`  | Map / building name  |
+| `MAP_SERVER_PORT`     | `7073`                   | map server port      |
 
-See `.env` in the `mapf_unified_repo` for the full list. 
+See `.env` in the `mapf_unified_repo` for the full list.
