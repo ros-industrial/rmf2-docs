@@ -1,11 +1,12 @@
 # RMF Industrial Developer Documentation
 
-Documentation site for the **ROS Industrial** multi-agent warehouse demo — MAPF path
-planning, the Task Orchestrator, the UE5 simulation, and the VDA5050 bridge.
+Documentation site for the **RMF Industrial**.
+
+<https://dev.rmf-industrial.org/latest>
 
 Built with [VitePress](https://vitepress.dev).
 
-## Prerequisites
+## Source Installation
 
 Install `pnpm` (10 and later) and `NodeJS` (22 and later)
 
@@ -15,25 +16,41 @@ source ~/.bashrc
 pnpm env use --global 24
 ```
 
-## Getting started
+Install Git LFS (Large File Storage)
 
 ```bash
-cd ~/ros_industrial_ws/rmf2-docs
+sudo apt install git-lfs
+```
 
-# 1. Install dependencies (first time only)
+Clone the repo and pull the lfs
+
+```bash
+git clone https://github.com/ros-industrial/rmf2-docs.git
+git lfs pull
+cd rmf2-docs
+```
+
+Install dependencies
+
+```bash
 pnpm install
+```
 
-# 2. Start the live dev server (hot reload) → http://localhost:5173
-pnpm run docs:dev
+### Quick Start
+
+Start the live dev server (hot reload) → <http://localhost:5173>
+
+```bash
+pnpm docs:dev
 ```
 
 Open the printed URL in a browser; edits to any `.md` file reload instantly.
 
-## Build & preview the static site
+### Build & preview the static site
 
 ```bash
-pnpm run docs:build      # outputs static HTML to docs/.vitepress/dist/
-pnpm run docs:preview    # serve the built site locally to check it
+pnpm docs:build      # outputs static HTML to docs/.vitepress/dist/
+pnpm docs:preview    # serve the built site locally to check it
 ```
 
 `docs:build` fails on broken internal links, so a green build means every cross-page
@@ -43,22 +60,21 @@ link resolves.
 
 ```
 docs/
-├── index.md                  # home page (hero + module overview)
-├── guide/
-│   ├── getting-started.md     # prerequisites, build images, up/status/down
-│   ├── architecture.md        # system diagram, message fabrics, task flow
-│   ├── launch-scripts.md      # tmux launcher step table + control scripts
-│   ├── mapf.md                # MAPF unified container
-│   ├── task-orchestrator.md   # Rust / Crossflow workflow engine
-│   ├── simulation.md          # UE5 packaged simulation
-│   └── vda5050.md             # VDA5050 ↔ FIWARE bridge
-└── .vitepress/config.mts      # nav, sidebar, search
+├── index.md                   # home page (hero + module overview)
+├── public/                    # guides
+│   ├── <image-name>.png       # assets
+│   └── ...
+├── guide/                     # guides
+│   ├── <page-name>.md         # individual guide pages
+│   └── ...
+├── references/                # API references
+└── .vitepress/config.ts       # nav, sidebar, search
 ```
 
 ## Editing tips
 
 - **Add a page:** create a `.md` file, then add it to the `sidebar` (and `nav` if
-  top-level) in `docs/.vitepress/config.mts`.
+  top-level) in `docs/.vitepress/config.ts`.
 - **Internal links** use root-absolute paths without the `.md` extension, e.g.
-  `[MAPF](docs/modules/mapf)`.
+  `[MAPF](/guide/mapf)`.
 - **Callouts:** `::: tip` / `::: warning` / `::: danger` blocks are supported.
