@@ -51,7 +51,15 @@ export default withMermaid(
                 text: 'Task & Task Orchestrator',
                 link: '/guide/task-orchestrator',
               },
-              { text: 'Scheduler', link: '/guide/scheduler' },
+              {
+                text: 'Scheduler',
+                items: [
+                  { text: 'Introduction', link: '/guide/scheduler/introduction' },
+                  { text: 'Setup', link: '/guide/scheduler/setup' },
+                  { text: 'Quick Start', link: '/guide/scheduler/quick_start' },
+                  { text: 'Tutorials', link: '/guide/scheduler/tutorials' },
+                ],
+              },
               { text: 'UI', link: '/guide/ui' },
             ],
           },

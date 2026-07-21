@@ -42,7 +42,7 @@ features:
       src: /icons/FcTimeline.svg
     title: Task Scheduling
     details: Highly Efficient Task Scheduling for Machines, Humanoids and Mobile Robots.
-    link: /guide/scheduler
+    link: /guide/scheduler/introduction
   - icon: 🖥️
     title: Web Dashboard & UI
     details: React Library and Sample Web Dashboard for monitoring and control.
