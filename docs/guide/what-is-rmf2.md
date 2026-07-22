@@ -30,7 +30,7 @@ Effortless workflow definition and customization. → [Task Orchestrator](/guide
 
 ### Task Scheduling
 
-Highly efficient task scheduling for machines, humanoids and mobile robots. → [Scheduler](/guide/scheduler)
+Highly efficient task scheduling for machines, humanoids and mobile robots. → [Scheduler](/guide/scheduler/introduction)
 
 ### Web Dashboard & UI
 
@@ -50,7 +50,7 @@ the rest of the fleet.
 | [MAPF (unified)](/guide/mapf)                 | `mapf_unified_repo`      | `mapf_unified:latest`                       |
 | [Task Orchestrator](/guide/task-orchestrator) | `task_orchestrator_repo` | `task_orchestrator:latest`                  |
 | IOCS broker stack                             | `rmf2_broker_repo`       | Scorpio / Redis / RabbitMQ / Postgres       |
-| [Scheduler](/guide/scheduler)                 | `rmf2_scheduler`         | _not in demo yet_                           |
+| [Scheduler](/guide/scheduler/introduction)    | `rmf2_scheduler`         | _not in demo yet_                           |
 | [UI](/guide/ui)                               | `rmf2-ui`                | _not in demo yet_                           |
 
 > All containers share the Docker network `rmf2_broker_rmf-network`.

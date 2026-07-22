@@ -72,5 +72,5 @@ Read them in order:
 
 From there, each module has its own page — **[Simulation](/guide/simulation)**,
 **[VDA5050](/guide/vda5050)**, **[MAPF](/guide/mapf)**,
-**[Task Orchestrator](/guide/task-orchestrator)**, **[Scheduler](/guide/scheduler)**, and
+**[Task Orchestrator](/guide/task-orchestrator)**, **[Scheduler](/guide/scheduler/introduction)**, and
 **[UI](/guide/ui)** — dive into whichever you need.
