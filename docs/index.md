@@ -32,7 +32,7 @@ features:
       src: /icons/FcMindMap.svg
     title: Multi-Agent Path Finding and Execution
     details: Scalable route planning and deterministic execution.
-    link: /guide/mapf
+    link: /guide/mapf/
   - icon:
       src: /icons/FcWorkflow.svg
     title: Workflow Orchestration
@@ -71,6 +71,6 @@ Read them in order:
 4. **[Demos](/guide/demos)** — run it end to end
 
 From there, each module has its own page — **[Simulation](/guide/simulation)**,
-**[VDA5050](/guide/vda5050)**, **[MAPF](/guide/mapf)**,
+**[VDA5050](/guide/vda5050)**, **[MAPF](/guide/mapf/)**,
 **[Task Orchestrator](/guide/task-orchestrator)**, **[Scheduler](/guide/scheduler)**, and
 **[UI](/guide/ui)** — dive into whichever you need.
