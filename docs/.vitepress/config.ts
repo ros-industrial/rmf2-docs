@@ -54,9 +54,15 @@ export default withMermaid(
               {
                 text: 'Scheduler',
                 items: [
-                  { text: 'Introduction', link: '/guide/scheduler/introduction' },
-                  { text: 'Setup', link: '/guide/scheduler/setup' },
+                  {
+                    text: 'Introduction',
+                    link: '/guide/scheduler/introduction',
+                  },
                   { text: 'Quick Start', link: '/guide/scheduler/quick_start' },
+                  {
+                    text: 'Build From Source',
+                    link: '/guide/scheduler/build_from_source',
+                  },
                   { text: 'Tutorials', link: '/guide/scheduler/tutorials' },
                 ],
               },

@@ -1,4 +1,4 @@
-# System Setup
+# Build From Source
 
 ## Prerequisite
 
@@ -41,9 +41,7 @@ configuration (in `~/.bashrc`):
 source /opt/ros/humble/setup.bash
 ```
 
-# Installation
-
-## Install from Source
+## Build & Install
 
 Create a colcon workspace.
 
