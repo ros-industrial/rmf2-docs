@@ -64,6 +64,10 @@ export default withMermaid(
                     link: '/guide/scheduler/build_from_source',
                   },
                   { text: 'Tutorials', link: '/guide/scheduler/tutorials' },
+                  {
+                    text: 'Data Structures',
+                    link: '/guide/scheduler/data_structures',
+                  },
                 ],
               },
               { text: 'UI', link: '/guide/ui' },

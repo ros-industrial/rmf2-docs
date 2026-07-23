@@ -21,15 +21,27 @@
 
 ## Process Data Structure
 
-| Field             | Type          | Required | Description                                       |
-| ----------------- | ------------- | -------- | ------------------------------------------------- |
-| `id`              | string        | required | Process ID, in IOCS this is stored as `urn:<id>`  |
-| `graph`           | JSON          | required | Task relationship, only Task IDs are stored here. |
-| `current_events`  | string vector | optional | Task IDs of running Tasks.                        |
-| `process_details` | JSON          | optional | Additional Process information.                   |
-| `series_id`       | string        | optional | Series ID of the Series the process belongs to.   |
+| Field             | Type         | Required | Description                                       |
+| ----------------- | ------------ | -------- | ------------------------------------------------- |
+| `id`              | string       | required | Process ID, in IOCS this is stored as `urn:<id>`  |
+| `graph`           | JSON         | required | Task relationship, only Task IDs are stored here. |
+| `current_events`  | string array | optional | Task IDs of running Tasks.                        |
+| `process_details` | JSON         | optional | Additional Process information.                   |
+| `series_id`       | string       | optional | Series ID of the Series the process belongs to.   |
 
 A Directed Acyclic Graph (DAG) of task relationships is recorded as JSON, with only
 the Task IDs stored in the `graph` field.
 
-## Series
+## Series Data Structure
+
+| Field           | Type         | Required | Description                                                                                    |
+| --------------- | ------------ | -------- | ---------------------------------------------------------------------------------------------- |
+| `id`            | string       | required | Series ID, in IOCS this is stored as `urn:<id>`                                                |
+| `type`          | string       | required | Series type, used to categorize the series (e.g., task or process series).                     |
+| `cron`          | string       | required | Cron expression defining the recurrence schedule.                                              |
+| `timezone`      | string       | required | Timezone for interpreting the cron expression and occurrence times.                            |
+| `occurrences`   | string array | required | List of occurrences (linked task or process instances) belonging to this series.               |
+| `until`         | ISOTime      | optional | End time for the series. If absent, the series recurs indefinitely.                            |
+| `exception_ids` | string array | optional | IDs of occurrences marked as exceptions (e.g., skipped or individually rescheduled instances). |
+
+Each `Occurrence` in the `occurrences` array contains a `time` (ISOTime) and an `id` (string) linking to its corresponding Task or Process.
