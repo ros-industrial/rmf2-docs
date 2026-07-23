@@ -25,34 +25,3 @@ It will be added in a future release.
 | Execution Pre-processing     | This component takes in all the tasks 10 min from now and convert them to the format for the task orchestrator to execute.                                                                                                                                                                                                                                                                                                                                                       |
 | Send for execution           | Send the tasks to the Task Orchestrator for execution.                                                                                                                                                                                                                                                                                                                                                                                                                           |
 | Task Execution Monitor       | Upon delay, completion, cancellation or failure during task execution, this component updates the schedule database. Based on these information, the optimization pipeline may be triggered to adjust the schedule. The Stochastic Model also uses this module for operational data collection.                                                                                                                                                                                  |
-
-## Task Data Structure
-
-| Field                | Type    | Required | Description                                                                                                             |
-| -------------------- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `id`                 | string  | required | Task ID, in IOCS this is stored as `urn:<id>`                                                                           |
-| `type`               | string  | required | Task type, this is used to distinguish execution methods. This can also be used for conflict checking and optimization. |
-| `description`        | string  | optional | Additional description of the task.                                                                                     |
-| `start_time`         | ISOTime | required | Start time of the task. This is updated to the actual start time once the task execution has started.                   |
-| `end_time`           | ISOTime | optional | End time of the task. This is updated to the actual end time once the task execution has completed.                     |
-| `process_id`         | string  | optional | The process this task belongs to.                                                                                       |
-| `series_id`          | string  | optional | The reoccurring series the task belongs to. This is unused in IHI use cases.                                            |
-| `status`             | string  | optional | The status of the task.                                                                                                 |
-| `resource_id`        | string  | optional | The Resource ID assigned to this task.                                                                                  |
-| `deadline`           | ISOTime | optional | The deadline of the task.                                                                                               |
-| `planned_start_time` | ISOTime | optional | Planned start time of the task.                                                                                         |
-| `planned_end_time`   | ISOTime | optional | Planned end time of the task.                                                                                           |
-| `estimated_duration` | float   | optional | The estimated duration of the task.                                                                                     |
-| `actual_start_time`  | ISOTime | optional | Actual start time of the task.                                                                                          |
-| `actual_end_time`    | ISOTime | optional | Actual end time of the task.                                                                                            |
-| `task_details`       | JSON    | optional | Additional use case specific data.                                                                                      |
-
-## Process Data Structure
-
-| Field   | Type   | Required | Description                                       |
-| ------- | ------ | -------- | ------------------------------------------------- |
-| `id`    | string | required | Task ID, in IOCS this is stored as `urn:<id>`     |
-| `graph` | JSON   | required | Task relationship, only Task IDs are stored here. |
-
-A Directed Acyclic Graph (DAG) of task relationships is recorded as JSON, with only
-the Task IDs stored in the `graph` field.
