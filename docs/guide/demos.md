@@ -28,7 +28,7 @@ cd ~/ros_industrial_ws/ros_industrial_demo/test_scripts/mapf
 
 ![Demo_Mapf](/demo/mapf-step-01.gif)
 
-→ More info: [MAPF](/guide/mapf)
+→ More info: [MAPF](/guide/mapf/)
 
 ## 3. Send a VDA5050 order to the VDA5050 master
 

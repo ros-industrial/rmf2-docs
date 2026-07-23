@@ -19,7 +19,7 @@ flowchart LR
 | Module                | Role                                                                        | Deep dive                                       |
 | --------------------- | --------------------------------------------------------------------------- | ----------------------------------------------- |
 | **Task Orchestrator** | Decides _what_ to do — runs the workflow for each task and requests routes. | [Task Orchestrator →](/guide/task-orchestrator) |
-| **MAPF**              | Decides _where to go_ — plans collision-free paths and drives execution.    | [MAPF →](/guide/mapf)                           |
+| **MAPF**              | Decides _where to go_ — plans collision-free paths and drives execution.    | [MAPF →](/guide/mapf/)                          |
 | **VDA5050**           | Talks to the robots — relays commands and reports state back.               | [VDA5050 →](/guide/vda5050)                     |
 | **Simulation**        | Plays the robot fleet so the whole stack runs without hardware.             | [Simulation →](/guide/simulation)               |
 
@@ -28,7 +28,7 @@ flowchart LR
 1. A task is submitted.
 2. The [**Task Orchestrator**](/guide/task-orchestrator) runs the task's workflow and
    asks MAPF for routes.
-3. [**MAPF**](/guide/mapf) plans collision-free paths and drives their execution.
+3. [**MAPF**](/guide/mapf/) plans collision-free paths and drives their execution.
 4. [**VDA5050**](/guide/vda5050) relays the movement commands to the robots and reports
    their state back up the chain.
 5. The [**Simulation**](/guide/simulation) plays the role of the robot fleet, closing

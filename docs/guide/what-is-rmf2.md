@@ -22,7 +22,7 @@ Out-of-the-box support and tooling for VDA5050 compatibility. → [VDA5050](/gui
 
 ### Multi-Agent Path Finding and Execution
 
-Scalable route planning and deterministic execution. → [MAPF](/guide/mapf)
+Scalable route planning and deterministic execution. → [MAPF](/guide/mapf/)
 
 ### Workflow Orchestration
 
@@ -47,7 +47,7 @@ the rest of the fleet.
 | --------------------------------------------- | ------------------------ | ------------------------------------------- |
 | [Simulation](/guide/simulation)               | `simulation/`            | UE5 packaged binary                         |
 | [VDA5050](/guide/vda5050)                     | `vda5050_fiware_repo`    | `vda5050_fiware_repo-vda5050_fiware:latest` |
-| [MAPF (unified)](/guide/mapf)                 | `mapf_unified_repo`      | `mapf_unified:latest`                       |
+| [MAPF (unified)](/guide/mapf/)                | `mapf_unified_repo`      | `mapf_unified:latest`                       |
 | [Task Orchestrator](/guide/task-orchestrator) | `task_orchestrator_repo` | `task_orchestrator:latest`                  |
 | IOCS broker stack                             | `rmf2_broker_repo`       | Scorpio / Redis / RabbitMQ / Postgres       |
 | [Scheduler](/guide/scheduler)                 | `rmf2_scheduler`         | _not in demo yet_                           |

@@ -76,5 +76,5 @@ docs/
 - **Add a page:** create a `.md` file, then add it to the `sidebar` (and `nav` if
   top-level) in `docs/.vitepress/config.ts`.
 - **Internal links** use root-absolute paths without the `.md` extension, e.g.
-  `[MAPF](/guide/mapf)`.
+  `[MAPF](/guide/mapf/)`.
 - **Callouts:** `::: tip` / `::: warning` / `::: danger` blocks are supported.

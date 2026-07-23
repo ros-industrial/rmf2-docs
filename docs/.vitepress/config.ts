@@ -46,7 +46,22 @@ export default withMermaid(
             items: [
               { text: 'Simulation (UE5)', link: '/guide/simulation' },
               { text: 'VDA5050 — Master & Client', link: '/guide/vda5050' },
-              { text: 'MAPF (unified)', link: '/guide/mapf' },
+              {
+                text: 'MAPF (unified)',
+                items: [
+                  { text: 'Introduction', link: '/guide/mapf/' },
+                  {
+                    text: 'Build From Source',
+                    link: '/guide/mapf/build_from_source',
+                  },
+                  { text: 'Usage', link: '/guide/mapf/usage' },
+                  {
+                    text: 'ROS2 Interfaces',
+                    link: '/guide/mapf/ros2_interfaces',
+                  },
+                  { text: 'Integration', link: '/guide/mapf/integration' },
+                ],
+              },
               {
                 text: 'Task & Task Orchestrator',
                 link: '/guide/task-orchestrator',
