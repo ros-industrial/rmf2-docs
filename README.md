@@ -36,6 +36,32 @@ Install dependencies
 pnpm install
 ```
 
+### Module API Documentation Generation
+
+Install `UV`.
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Install Rust toolschains.
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+Install Doxgen
+
+```bash
+sudo apt install doxygen graphviz
+```
+
+Generate Module API documentation
+
+```bash
+pnpm docs:generate-api
+```
+
 ### Quick Start
 
 Start the live dev server (hot reload) → <http://localhost:5173>
