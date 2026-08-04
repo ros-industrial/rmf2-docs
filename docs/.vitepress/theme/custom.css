@@ -1,0 +1,37 @@
+/* ---------------- Footer ---------------- */
+.VPFooter.has-sidebar {
+  display: block !important;
+  /* Below when the sidebar is visible */
+  @media (min-width: 960px) and (max-width: 1280px) {
+    left: var(--vp-sidebar-width) !important;
+    right: 0 !important;
+    width: calc(100% - var(--vp-sidebar-width)) !important;
+  }
+  /* Below when the sidebar AND aside is visible */
+  --footer-aside-width: 256px;
+  --footer-extra-padding: max(
+    0px,
+    calc((100% - var(--vp-layout-max-width)) / 2)
+  );
+  @media (min-width: 1280px) {
+    left: calc(
+      var(--vp-sidebar-width) + var(--footer-extra-padding)
+    ) !important;
+    width: calc(
+      100% - var(--footer-extra-padding) * 2 - var(--vp-sidebar-width) -
+        var(--footer-aside-width)
+    ) !important;
+  }
+}
+
+/* ---------------- mobile: reduce hero image padding ---------------- */
+@media (max-width: 959px) {
+  .VPHero.has-image {
+    padding-top: calc(
+      calc((var(--vp-nav-height) + var(--vp-layout-top-height, 0px)) * 0.2)
+    ) !important; /* default calc(var(--vp-nav-height) + var(--vp-layout-top-height, 0px) + 48px) */
+  }
+  .VPHero.has-image .image {
+    transform: translateY(16%) !important;
+  }
+}
