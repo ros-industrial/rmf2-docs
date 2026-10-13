@@ -45,7 +45,7 @@ features:
       src: /icons/FcTimeline.svg
     title: Task Scheduling
     details: Highly Efficient Task Scheduling for Machines, Humanoids and Mobile Robots.
-    link: /guide/scheduler
+    link: /guide/scheduler/introduction
   - icon: 🖥️
     title: Web Dashboard & UI
     details: React Library and Sample Web Dashboard for monitoring and control.
@@ -75,5 +75,5 @@ Read them in order:
 
 From there, each module has its own page — **[Simulation](/guide/simulation)**,
 **[VDA5050](/guide/vda5050)**, **[MAPF](/guide/mapf)**,
-**[Task Orchestrator](/guide/task-orchestrator)**, **[Scheduler](/guide/scheduler)**, and
+**[Task Orchestrator](/guide/task-orchestrator)**, **[Scheduler](/guide/scheduler/introduction)**, and
 **[UI](/guide/ui)** — dive into whichever you need.
