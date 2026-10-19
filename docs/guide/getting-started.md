@@ -123,6 +123,13 @@ What it does, in order (see [Launch scripts](/guide/launch-scripts) for the full
 Download and unpack the latest UE5 simulation build:
 
 ```bash
+# For RMF-I 0.2.0:
+cd ~/ros_industrial_ws
+curl -OL https://downloads.rmf-industrial.org/UE5Demos/RMF2_SIM_0.2.0.zip
+unzip RMF2_SIM_0.2.0.zip
+mv RMF2_SIM_0.2.0 ~/ros_industrial_ws/simulation
+
+# For RMF-I Legacy:
 cd ~/ros_industrial_ws
 curl -OL https://downloads.rmf-industrial.org/UE5Demos/RMF2_SIM_20260611.zip
 unzip RMF2_SIM_20260611.zip
@@ -133,6 +140,11 @@ You can launch it standalone to verify it runs (the launcher also starts it as o
 its steps):
 
 ```bash
+# For RMF-I 0.2.0:
+cd ~/ros_industrial_ws/simulation
+./RMF2_SIM.sh
+
+# For RMF-I Legacy:
 cd ~/ros_industrial_ws/simulation
 ./Linux/RMF2_SIM.sh
 ```
