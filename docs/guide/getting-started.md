@@ -4,7 +4,7 @@ This page takes you from a clean Ubuntu 22.04 / ROS 2 Humble machine to a runnin
 
 ## Get the source
 
-Make a `ros_industrial_ws` directory in your home folder and clone the `rmf_industrial` repo. Use `throwaway/x2-demo` branch as of 20 Oct 2026.
+Make a `ros_industrial_ws` directory in your home folder and clone the `rmf_industrial` repo (use `throwaway/x2-demo` branch as of 20 Oct 2026).
 
 ```bash
 mkdir -p ~/ros_industrial_ws
@@ -24,9 +24,7 @@ cd ~/ros_industrial_wsrmf_industrial
 docker compose -f docker-compose.dev.yml up -d
 ```
 
-::: tip
-First-time builds are slow.
-:::
+> **TIP:** First-time builds are slow.
 
 ## Download & Launch the warehouse simulation
 
@@ -46,7 +44,7 @@ cd ~/ros_industrial_ws/RMF2_SIM_v0.2.0/Linux
 ./RMF2_SIM.sh
 ```
 
-The simulation should start full screen matching your screen resolution.
+The simulation should start full screen matching your screen resolution.  
 You can press `Alt + Enter` to toggle between fullscreen and windowed mode.
 
 You can also start the simulation in a windowed mode with specific resolution
