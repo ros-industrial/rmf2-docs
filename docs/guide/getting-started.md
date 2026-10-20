@@ -11,7 +11,7 @@ mkdir -p ~/ros_industrial_ws
 cd ~/ros_industrial_ws
 
 git clone git@github.com:Briancbn/rmf_industrial.git
-cd ~/ros_industrial_wsrmf_industrial
+cd ~/ros_industrial_ws/rmf_industrial
 
 git switch --track -c throwaway/x2-demo origin/throwaway/x2-demo
 
@@ -20,7 +20,7 @@ git switch --track -c throwaway/x2-demo origin/throwaway/x2-demo
 ## Build the image
 
 ```bash
-cd ~/ros_industrial_wsrmf_industrial
+cd ~/ros_industrial_ws/rmf_industrial
 docker compose -f docker-compose.dev.yml up -d
 ```
 
