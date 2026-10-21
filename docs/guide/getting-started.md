@@ -47,7 +47,7 @@ sudo lsof -i :8083 -i :8000 -i :8001 -i :8002 -i :8003 -i :8004 -i :8084 \
           -i :1928 -i :1932 -i :1933
 ```
 
-What it does, in order (see [Launch Scripts](/guide/launch-scripts) for the full table):
+What it does, in order (see [Launch Scripts](/guide/launch-scripts) for the full table)
 
 ## Download & Launch the Warehouse Simulation
 
