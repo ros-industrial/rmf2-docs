@@ -4,27 +4,21 @@ This page takes you from a clean Ubuntu 22.04 or 24.04 machine to a running demo
 
 ## Get the source
 
-Make a `ros_industrial_ws` directory in your home folder and clone the `rmf_industrial` repo (use `throwaway/x2-demo` branch as of 20 Oct 2026).
+Clone the `rmf_industrial` repo to your home folder (use `release-v0.2.0rc1` branch as of 21 Oct 2026).
 
 ```bash
-mkdir -p ~/ros_industrial_ws
-cd ~/ros_industrial_ws
-
 git clone git@github.com:Briancbn/rmf_industrial.git
-cd ~/ros_industrial_ws/rmf_industrial
+cd ~/rmf_industrial
 
-git switch --track -c throwaway/x2-demo origin/throwaway/x2-demo
-
+git switch --track -c release-v0.2.0rc1 origin/release-v0.2.0rc1
 ```
 
 ## Build the image
 
 ```bash
-cd ~/ros_industrial_ws/rmf_industrial
+cd ~/rmf_industrial
 docker compose -f docker-compose.dev.yml up -d
 ```
-
-> **TIP:** First-time builds are slow.
 
 ### ⚠️ Port conflicts
 
@@ -55,12 +49,11 @@ sudo lsof -i :8083 -i :8000 -i :8001 -i :8002 -i :8003 -i :8004 -i :8084 \
 
 What it does, in order (see [Launch Scripts](/guide/launch-scripts) for the full table):
 
-## Download & Launch the warehouse simulation
+## Download & Launch the Warehouse Simulation
 
-Download and unpack the latest UE5 simulation build:
+Download and unpack the latest UE5 simulation build in your home folder:
 
 ```bash
-cd ~/ros_industrial_ws
 curl -OL https://downloads.rmf-industrial.org/UE5Demos/RMF2_SIM_v0.2.0.zip
 
 unzip RMF2_SIM_0.2.0.zip
@@ -69,14 +62,13 @@ unzip RMF2_SIM_0.2.0.zip
 Start the simulation
 
 ```sh
-cd ~/ros_industrial_ws/RMF2_SIM_v0.2.0/Linux
-./RMF2_SIM.sh
+cd ~/RMF2_SIM_v0.2.0
+./Linux/RMF2_SIM.sh
 ```
 
 The simulation should start full screen matching your screen resolution.  
-You can press `Alt + Enter` to toggle between fullscreen and windowed mode.
-
-You can also start the simulation in a windowed mode with specific resolution
+You can press `Alt + Enter` to toggle between fullscreen and windowed mode.  
+You can also start the simulation in a windowed mode with a specific resolution.
 
 ```sh
 ./RMF2_SIM.sh -windowed -resx 1920 -resy 1080
@@ -90,11 +82,15 @@ Here are the basics
   - `A`, `D` pan left and right
   - `Q`, `E` move up and down
 
+  View: Mouse  or Controller Right Stick
+  - click on the screen and hold to move around
+
+Other controls
+- Tab `M` to show Map marker
+
 ## Troubleshooting
 
-### Stop conflicting host services
-
-The stack runs its own brokers, so stop any system-wide ones:
+The stack runs its own brokers, so stop any system-wide ones that may conflict:
 
 ```bash
 sudo systemctl stop mosquitto.service 2>/dev/null || true
