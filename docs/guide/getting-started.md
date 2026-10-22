@@ -6,7 +6,7 @@ This page takes you from a clean Ubuntu 22.04 or 24.04 machine to a running demo
 
 Clone the `rmf_industrial` repo to your home folder (use `release-v0.2.0rc1` branch as of 21 Oct 2026).
 
-```bash
+```sh
 git clone git@github.com:Briancbn/rmf_industrial.git
 cd ~/rmf_industrial
 
@@ -41,18 +41,17 @@ The stack publishes the host ports below. If a previous run — or any other pro
 | Service           | Endpoint                                    |
 | -------           | --------                                    |
 | Task Scheduler    | `http://localhost:8080/task_scheduler`      |
-| Task Orchestrator | `http://localhost:8080/task_orchestrator`        |
+| Task Orchestrator | `http://localhost:8080/task_orchestrator`   |
 | Plan Server       | `http://localhost:8080/plan_server`         |
 | Plan Executor     | `http://localhost:8080/plan_executor`       |
 | VDA5050 Master    | `http://localhost:8080/vda5050_master`      |
 | MQTT Broker       | `localhost:1883`                            |
-| AMQP Broker       | `localhost:5672`                            |
-| AMQP Admin UI     | 'localhost:15672                            |
+| AMQP Broker       | `localhost:5672`, `localhost:15672`         |
 
 You MUST ensure every port below is free before starting — each command should return
 nothing. Stop or remove whatever shows up.
 
-```bash
+```sh
 sudo lsof -nP -i :8080 -i :1883 -i :8000 -i :5672 -i :15672
 ```
 
@@ -60,7 +59,7 @@ sudo lsof -nP -i :8080 -i :1883 -i :8000 -i :5672 -i :15672
 
 Download and unpack the latest UE5 simulation build in your home folder:
 
-```bash
+```sh
 curl -OL https://downloads.rmf-industrial.org/UE5Demos/RMF2_SIM_v0.2.0.zip
 
 unzip RMF2_SIM_0.2.0.zip
@@ -99,7 +98,7 @@ Other controls
 
 The stack runs its own brokers, so stop any system-wide ones that may conflict:
 
-```bash
+```sh
 sudo systemctl stop mosquitto.service 2>/dev/null || true
 sudo systemctl stop rabbitmq-server.service 2>/dev/null || true
 ```
