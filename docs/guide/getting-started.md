@@ -38,15 +38,15 @@ And the following RMF2 Services
 
 The stack publishes the host ports below. If a previous run — or any other process (your own Postgres, Redis, RabbitMQ, Mosquitto, etc.) — is already holding one of them, startup will fail. Before starting, make sure they are free.
 
-| Service           | Endpoint                                    |
-| -------           | --------                                    |
-| Task Scheduler    | `http://localhost:8080/task_scheduler`      |
-| Task Orchestrator | `http://localhost:8080/task_orchestrator`   |
-| Plan Server       | `http://localhost:8080/plan_server`         |
-| Plan Executor     | `http://localhost:8080/plan_executor`       |
-| VDA5050 Master    | `http://localhost:8080/vda5050_master`      |
-| MQTT Broker       | `localhost:1883`                            |
-| AMQP Broker       | `localhost:5672`, `localhost:15672`         |
+| Service           | Endpoint                                          |
+| -------           | --------                                          |
+| Task Scheduler    | `http://localhost:8080/task_scheduler`            |
+| Task Orchestrator | `http://localhost:8080/task_orchestrator`         |
+| Plan Server       | `http://localhost:8080/plan_server`               |
+| Plan Executor     | `http://localhost:8080/plan_executor`             |
+| VDA5050 Master    | `http://localhost:8080/vda5050_master`            |
+| MQTT Broker       | `mqtt://localhost:1883`                           |
+| AMQP Broker       | `amqp://localhost:5672`, `http://localhost:15672` |
 
 You MUST ensure every port below is free before starting — each command should return
 nothing. Stop or remove whatever shows up.
