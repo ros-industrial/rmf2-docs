@@ -13,41 +13,48 @@ cd ~/rmf_industrial
 git switch --track -c release-v0.2.0rc1 origin/release-v0.2.0rc1
 ```
 
-## Build the image
+## Launch RMF-Industrial Core Services
 
-```bash
+Run the following commands to launch the RMF Industrial Core Services
+
+```sh
 cd ~/rmf_industrial
 docker compose -f docker-compose.dev.yml up -d
 ```
+
+This runs the essential communication broker for RMF Industrial Services
+- RabbitMQ Broker
+- Mosquitto MQTT Broker
+
+And the following RMF2 Services
+- VDA5050 Master
+- Robot Execution System
+  - Plan Server
+  - Plan Executor
+- Task Orchestrator
+- Task Scheduler
 
 ### ⚠️ Port conflicts
 
 The stack publishes the host ports below. If a previous run — or any other process (your own Postgres, Redis, RabbitMQ, Mosquitto, etc.) — is already holding one of them, startup will fail. Before starting, make sure they are free.
 
-| Service | Endpoint |
-| ------- | -------- |
-| Task Scheduler | `http://localhost:8080/task_scheduler` |
-| Task Orchestrator | `http://localhost:8080/orchestrator` |
-| Plan Server | `http://localhost:8080/plan_server` |
-| Plan Executor | `http://localhost:8080/plan_executor` |
-| VDA5050 Master | `http://localhost:8080/vda5050_master` |
-| MQTT Broker | `localhost:1883` |
-| AMQP Broker | `localhost:5672` |
+| Service           | Endpoint                                    |
+| -------           | --------                                    |
+| Task Scheduler    | `http://localhost:8080/task_scheduler`      |
+| Task Orchestrator | `http://localhost:8080/task_orchestrator`        |
+| Plan Server       | `http://localhost:8080/plan_server`         |
+| Plan Executor     | `http://localhost:8080/plan_executor`       |
+| VDA5050 Master    | `http://localhost:8080/vda5050_master`      |
+| MQTT Broker       | `localhost:1883`                            |
+| AMQP Broker       | `localhost:5672`                            |
+| AMQP Admin UI     | 'localhost:15672                            |
 
 You MUST ensure every port below is free before starting — each command should return
 nothing. Stop or remove whatever shows up.
 
 ```bash
-sudo lsof -nP -i :8080 -i :8083 -i :8000 -i :8001 -i :8002 \
-          -i :8003 -i :8004 -i :8084 -i :8888 -i :2727 \
-          -i :1026 -i :9090 -i :9999 -i :5431 -i :5432 \
-          -i :5672 -i :15672 -i :6379 -i :27016 \
-          -i :7073 -i :6333 \
-          -i :1883 -i :1884 -i :1885 -i :1886 -i :1887 -i :1888 \
-          -i :1928 -i :1932 -i :1933
+sudo lsof -nP -i :8080 -i :1883 -i :8000 -i :5672 -i :15672
 ```
-
-What it does, in order (see [Launch Scripts](/guide/launch-scripts) for the full table)
 
 ## Download & Launch the Warehouse Simulation
 
@@ -96,5 +103,6 @@ The stack runs its own brokers, so stop any system-wide ones that may conflict:
 sudo systemctl stop mosquitto.service 2>/dev/null || true
 sudo systemctl stop rabbitmq-server.service 2>/dev/null || true
 ```
-> **TIP:**
-See [Troubleshooting](./simulation#troubleshooting) if the simulation doesn't run as expected. Some environments (e.g. newer Ubuntu releases or mixed integrated/discrete GPU machines) may need extra steps.
+::: tip
+See [Simulation Troubleshooting](./simulation#troubleshooting) if the simulation doesn't run as expected. Some environments (e.g. newer Ubuntu releases or mixed integrated/discrete GPU machines) may need extra steps.
+:::
